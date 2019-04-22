@@ -1,22 +1,11 @@
-# -*- coding: utf-8 -*-
-
-# Sample Python code for youtube.search.list
-# See instructions for running these code samples locally:
-# https://developers.google.com/explorer-help/guides/code_samples#python
-
 import os
 import json
 import googleapiclient.discovery
-#from apiclient.discovery import build
-#from apiclient.errors import HttpError
-#from oauth2client.tools import argparser
 import pandas as pd
 import pprint 
 import matplotlib.pyplot as pd
 
 def main():
-    # Disable OAuthlib's HTTPS verification when running locally.
-    # *DO NOT* leave this option enabled in production.
     os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
     api_service_name = "youtube"
@@ -28,7 +17,8 @@ def main():
 
     request = youtube.search().list(
         part="snippet",
-        relatedToVideoId="UBuH1b0Dqm0",
+        maxResults=50,
+        q="surfing"
         type="video",
         #category = "videoCategory"
     )
