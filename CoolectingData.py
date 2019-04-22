@@ -7,9 +7,9 @@
 import os
 import json
 import googleapiclient.discovery
-from apiclient.discovery import build
-from apiclient.errors import HttpError
-from oauth2client.tools import argparser
+#from apiclient.discovery import build
+#from apiclient.errors import HttpError
+#from oauth2client.tools import argparser
 import pandas as pd
 import pprint 
 import matplotlib.pyplot as pd
@@ -46,43 +46,14 @@ def main():
 
             videoId.append(search_result['id']['videoId'])
 
-            response = youtube.videos().list(
-                part='statistics, snippet',
-                id=search_result['id']['videoId']).execute()
+    youtube_dict = {'title':title,'videoId':videoId}
 
-            #channelId.append(response['items'][0]['snippet']['channelId'])
-            #channelTitle.append(response['items'][0]['snippet']['channelTitle'])
-            #categoryId.append(response['items'][0]['snippet']['categoryId'])
-            #favoriteCount.append(response['items'][0]['statistics']['favoriteCount'])
-            #viewCount.append(response['items'][0]['statistics']['viewCount'])
-            #likeCount.append(response['items'][0]['statistics']['likeCount'])
-            #dislikeCount.append(response['items'][0]['statistics']['dislikeCount'])
- 
-        if 'commentCount' in response['items'][0]['statistics'].keys():
-            commentCount.append(response['items'][0]['statistics']['commentCount'])
-        else:
-            commentCount.append([])
-	  
-        if 'tags' in response['items'][0]['snippet'].keys():
-            tags.append(response['items'][0]['snippet']['tags'])
-        else:
-            tags.append([])
-
-    youtube_dict = {'tags':tags,'channelId': channelId,'channelTitle': channelTitle,'categoryId':categoryId,'title':title,'videoId':videoId,'viewCount':viewCount,'likeCount':likeCount,'dislikeCount':dislikeCount,'commentCount':commentCount,'favoriteCount':favoriteCount}
-
-    return youtube_dict
-
-  
-    
-
-
-    
-    
+    #return youtube_dict
     
     #ReadableDict = json.loads(request.text)
     print(type(response))
     print(list(response.keys()))
-
+    print(youtube_dict)
     #print(list(response))
     #for item in response['response']['items']:
 
